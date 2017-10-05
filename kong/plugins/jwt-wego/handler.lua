@@ -81,7 +81,6 @@ local function set_consumer(consumer, jwt_secret)
   else
     ngx_set_header(constants.HEADERS.ANONYMOUS, true)
   end
-
 end
 
 local function do_authentication(conf)
@@ -170,6 +169,7 @@ local function do_authentication(conf)
   ngx_set_header(local_constants.HEADERS.TOKEN_USER_ID, claims['uid'])
   ngx_set_header(local_constants.HEADERS.TOKEN_USER_EMAIL, claims['sub'])
   ngx_set_header(local_constants.HEADERS.TOKEN_SCOPES, claims['aud'])
+  ngx_set_header(local_constants.HEADERS.AID, claims['aid'])
 
   ngx.ctx.authenticated_user_id = claims['uid']
 
