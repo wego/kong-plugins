@@ -9,6 +9,7 @@ local string_format = string.format
 local ngx_re_gmatch = ngx.re.gmatch
 
 local ngx_set_header = ngx.req.set_header
+local get_method = ngx.req.get_method
 
 local JwtHandler = BasePlugin:extend()
 
