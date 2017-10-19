@@ -9,6 +9,7 @@ local string_format = string.format
 local ngx_re_gmatch = ngx.re.gmatch
 
 local ngx_set_header = ngx.req.set_header
+local get_method = ngx.req.get_method
 
 local JwtHandler = BasePlugin:extend()
 
@@ -81,7 +82,6 @@ local function set_consumer(consumer, jwt_secret)
   else
     ngx_set_header(constants.HEADERS.ANONYMOUS, true)
   end
-
 end
 
 local function do_authentication(conf)
@@ -167,6 +167,7 @@ local function do_authentication(conf)
   ngx_set_header(local_constants.HEADERS.TOKEN_USER_ID, claims['uid'])
   ngx_set_header(local_constants.HEADERS.TOKEN_USER_EMAIL, claims['sub'])
   ngx_set_header(local_constants.HEADERS.TOKEN_SCOPES, claims['aud'])
+  ngx_set_header(local_constants.HEADERS.AID, claims['aid'])
 
   ngx.ctx.authenticated_user_id = claims['uid']
 
@@ -178,6 +179,11 @@ end
 
 function JwtHandler:access(conf)
   JwtHandler.super.access(self)
+
+  -- check if preflight request
+  if get_method() == "OPTIONS" then
+    return
+  end
 
   if ngx.ctx.authenticated_credential and conf.anonymous ~= "" then
     -- we're already authenticated, and we're configured for using anonymous,

@@ -1,7 +1,7 @@
 package = "kong-plugin-jwt-wego"
-version = "1.0-2"
+version = "1.0-3"
 source = {
-   url = "https://geeks.wego.com"
+   url = "https://github.com/wego/kong-plugins"
 }
 description = {
    summary = "JWT token validation by Wego.com",

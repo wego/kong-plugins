@@ -42,3 +42,28 @@ Then we set the identifier for rate limit to:
 ```
 
 This way the rate limit is counted against the user_id from the JWT token, and not against the Consumer ID or against IP.
+
+## Development
+
+To use the plugin in you local kong, you need to compile and install the plugin as a rock.
+
+```
+$ luarocks make <rockspec>
+```
+
+## Release
+
+### Create the rock
+
+```
+$ luarocks pack <plugin name>
+```
+
+example
+
+```
+$ luarocks pack kong-plugin-jwt-wego
+Packed: kong-plugins/kong-plugin-jwt-wego-1.0-3.all.rock
+```
+
+Release a new version in github with the new `.all.rock`
