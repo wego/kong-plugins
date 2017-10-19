@@ -42,3 +42,47 @@ Then we set the identifier for rate limit to:
 ```
 
 This way the rate limit is counted against the user_id from the JWT token, and not against the Consumer ID or against IP.
+
+## Development
+
+To use the plugin in you local kong, you need to compile and install the plugin as a rock.
+
+```
+$ luarocks make <rockspec>
+```
+
+## Release
+
+### Create the rock
+
+```
+$ luarocks pack <plugin name>
+```
+
+example
+
+```
+$ luarocks pack kong-plugin-jwt-wego
+  adding: doc/ (stored 0%)
+  adding: doc/README.md (deflated 54%)
+  adding: kong-plugin-jwt-wego-1.0-3.rockspec (deflated 70%)
+  adding: lua/ (stored 0%)
+  adding: lua/kong/ (stored 0%)
+  adding: lua/kong/plugins/ (stored 0%)
+  adding: lua/kong/plugins/jwt-wego/ (stored 0%)
+  adding: lua/kong/plugins/jwt-wego/api.lua (deflated 73%)
+  adding: lua/kong/plugins/jwt-wego/asn_sequence.lua (deflated 71%)
+  adding: lua/kong/plugins/jwt-wego/constants.lua (deflated 45%)
+  adding: lua/kong/plugins/jwt-wego/daos.lua (deflated 60%)
+  adding: lua/kong/plugins/jwt-wego/handler.lua (deflated 71%)
+  adding: lua/kong/plugins/jwt-wego/hooks.lua (deflated 51%)
+  adding: lua/kong/plugins/jwt-wego/jwt_parser.lua (deflated 69%)
+  adding: lua/kong/plugins/jwt-wego/migrations/ (stored 0%)
+  adding: lua/kong/plugins/jwt-wego/migrations/cassandra.lua (deflated 62%)
+  adding: lua/kong/plugins/jwt-wego/migrations/postgres.lua (deflated 64%)
+  adding: lua/kong/plugins/jwt-wego/schema.lua (deflated 49%)
+  adding: rock_manifest (deflated 53%)
+Packed: kong-plugins/kong-plugin-jwt-wego-1.0-3.all.rock
+```
+
+Release a new version in gihut with the new `.all.rock`
