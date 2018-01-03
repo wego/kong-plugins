@@ -1,6 +1,5 @@
 local singletons = require "kong.singletons"
 local BasePlugin = require "kong.plugins.base_plugin"
-local cache = require "kong.tools.database_cache"
 local responses = require "kong.tools.responses"
 local constants = require "kong.constants"
 local local_constants = require "kong.plugins.jwt-wego.constants"
